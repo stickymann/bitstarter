@@ -5,8 +5,12 @@ var infile = "index.html";
 var app = express.createServer(express.logger());
 
 app.get('/', function(request, response) {
-  var text = fs.readFileSync(infile);
-  response.send(text);
+	fs.readFile(infile, 'utf8', function (err,data) {
+	if (err) {
+		response.send(err);
+		return;
+	}
+	response.send((data);
 });
 
 var port = process.env.PORT || 5000;
